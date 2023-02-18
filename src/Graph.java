@@ -4,41 +4,18 @@ public class Graph {
 
   private int n;
   private int dim;
-  private float [][] weights; 
   private float [][] coords;
+  Random rand = new Random();
   
   public Graph (int n, int dim) {
     this.n = n;
     this.dim = dim; 
-    weights = new float [n][n];
-    Random rand = new Random();
 
-    if (dim == 0) {
-      for (int i = 0; i < n - 1; i++) {
-        for (int j = i + 1; j < n; j++) {
-          float w = rand.nextFloat();
-          weights[i][j] = w;
-          weights[j][i] = w;
-        }
-      }
-    }
-    else {
+    if (dim > 0) {
       coords = new float [n][dim];
       for (int i = 0; i < n; i++) {
         for (int j = 0; j < dim; j++)
           coords[i][j] = rand.nextFloat();
-      }
-
-      for (int i = 0; i < n - 1; i++) {
-        for (int j = i + 1; j < n; j++) {
-          float w = 0;
-          for (int k = 0; k < dim; k++) {
-            float d = coords[i][k] - coords[j][k];
-            w += d*d;
-          }
-          weights[i][j] = (float) (Math.sqrt(w));
-          weights[j][i] = (float) (Math.sqrt(w));
-        }
       }
     }
   }
@@ -57,9 +34,23 @@ public class Graph {
       visited[current] = true;
       
       for (int j = 1; j < n; j++) {
-        if (weights[current][j] < dist[j]) 
-          dist[j] = weights[current][j];
+        if (visited[j])
+          continue;
+        float w = 0;
+        if (dim == 0) 
+          w = rand.nextFloat();
+        else {
+          for (int k = 0; k < dim; k++) {
+            float d = coords[current][k] - coords[j][k];
+            w += d*d;
+          }
+          w = (float) (Math.sqrt(w));
+        }
+        //System.out.println(w + " " + current + " " + j);
+        if (w < dist[j]) 
+          dist[j] = w;
       }
+      //System.out.println(Arrays.toString(dist));
 
       float minDist = 10;
       int next = -1;
@@ -83,8 +74,8 @@ public class Graph {
         s += Arrays.toString(coords[i]) + "\n";
       s += "\n";
     }
-    for (int i = 0; i < n; i++) 
-      s += Arrays.toString(weights[i]) + "\n";
+    // for (int i = 0; i < n; i++) 
+    //   s += Arrays.toString(weights[i]) + "\n";
     return s;
   }
 }
