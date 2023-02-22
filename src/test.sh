@@ -1,4 +1,16 @@
 #!/bin/bash
+java randmst 0 128 5 0
+java randmst 0 256 5 0
+java randmst 0 512 5 0
+java randmst 0 1024 5 0
+java randmst 0 2048 5 0
+java randmst 0 4096 5 0
+java randmst 0 8192 5 0
+java randmst 0 16384 5 0
+java randmst 0 32768 5 0
+java randmst 0 65536 5 0
+java randmst 0 131072 5 0
+java randmst 0 262144 5 0
 java randmst 0 128 5 2
 java randmst 0 256 5 2
 java randmst 0 512 5 2

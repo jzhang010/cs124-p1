@@ -1,6 +1,7 @@
 public class randmst {
   
   public static void main(String[] args) {
+    long start = System.currentTimeMillis();
     int numpoints = Integer.parseInt(args[1]);
     int numtrials = Integer.parseInt(args[2]);
     int dimension = Integer.parseInt(args[3]);
@@ -13,6 +14,8 @@ public class randmst {
     }
     average /= numtrials;
 
+    long end = System.currentTimeMillis();
     System.out.println(average + " " + numpoints + " " + numtrials + " " + dimension);
+    System.out.println("Time: " + (end - start));
   }
 }
