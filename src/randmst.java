@@ -1,7 +1,9 @@
 public class randmst {
   
   public static void main(String[] args) {
-    long start = System.currentTimeMillis();
+    //long start = System.currentTimeMillis();
+
+    // Initialize command line arguments 
     int numpoints = Integer.parseInt(args[1]);
     int numtrials = Integer.parseInt(args[2]);
     int dimension = Integer.parseInt(args[3]);
@@ -9,13 +11,16 @@ public class randmst {
     float average = 0;
     for (int i = 0; i < numtrials; i++) {
       Graph g = new Graph(numpoints, dimension);
-      //System.out.print(g);
       average += g.primWeight();
+      //System.out.print(g);
     }
     average /= numtrials;
 
-    long end = System.currentTimeMillis();
+    // Prints out the average weight with initial inputs 
     System.out.println(average + " " + numpoints + " " + numtrials + " " + dimension);
-    System.out.println("Time: " + (end - start));
+
+    // Prints out time for program to run
+    //long end = System.currentTimeMillis();
+    //System.out.println("Time: " + (end - start));
   }
 }
